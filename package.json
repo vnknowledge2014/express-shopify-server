@@ -1,0 +1,22 @@
+{
+  "name": "shopify-first-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "mike",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "cookie": "^0.3.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
+    "nonce": "^1.0.4",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
