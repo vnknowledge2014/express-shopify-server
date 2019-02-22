@@ -72,10 +72,12 @@ router.get("/callback", (req, res) => {
       .post(accessTokenRequestUrl, { json: accessTokenPayload })
       .then(accessTokenResponse => {
         const accessToken = accessTokenResponse.access_token;
-        fs.appendFile('.env', `accessToken=${accessToken}`, function (err) {
-          if (err) throw err;
-          console.log('Saved!');
-        });
+        if(!process.env.accessToken) {
+          fs.appendFile('.env', `accessToken=${accessToken}`, function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
+        }
         res
           .status(200)
           .json({ message: "Exchange access token successfully", accessToken });
