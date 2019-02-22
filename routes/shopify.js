@@ -3,7 +3,7 @@ const cookie = require("cookie");
 const nonce = require("nonce")();
 const querystring = require("querystring");
 const request = require("request-promise");
-
+const fs = require('fs');
 const express = require("express");
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     const redirectUri = `${forwardingAddress}/shopify/callback`;
     const installUri = `https://${shop}/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&state=${state}&redirect_uri=${redirectUri}`;
 
-    res.cookie("state", state);
+    res.cookie("state", state);    
     res.redirect(installUri);
   } else {
     return res.status(400).json({
@@ -72,6 +72,10 @@ router.get("/callback", (req, res) => {
       .post(accessTokenRequestUrl, { json: accessTokenPayload })
       .then(accessTokenResponse => {
         const accessToken = accessTokenResponse.access_token;
+        fs.appendFile('.env', `accessToken=${accessToken}`, function (err) {
+          if (err) throw err;
+          console.log('Saved!');
+        });
         res
           .status(200)
           .json({ message: "Exchange access token successfully", accessToken });
