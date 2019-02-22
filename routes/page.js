@@ -11,8 +11,8 @@ router.get("/", (req, res) => {
     uri: "https://mia-underwear-vn.myshopify.com/admin/pages.json",
     headers: {
       "X-Shopify-Access-Token": process.env.accessToken,
-      client_id: process.env.apiKey,
-      client_secret: process.env.apiSecret
+      "client_id": process.env.apiKey,
+      "client_secret": process.env.apiSecret
     },
     json: true
   }).then(rs => {
@@ -25,15 +25,12 @@ router.post("/", (req, res) => {
     method: "POST",
     headers: {
       "X-Shopify-Access-Token": process.env.accessToken,
-      client_id: process.env.apiKey,
-      client_secret: process.env.apiSecret
+      "client_id": process.env.apiKey,
+      "client_secret": process.env.apiSecret
     },
     uri: pageURI,
     body: {
-      page: {
-        title: "process.env.test",
-        body_html: "ahahahahahahahahah"
-      }
+      page: req.body
     },
     json: true
   })
