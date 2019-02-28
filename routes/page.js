@@ -120,11 +120,11 @@ router.delete("/", (req, res) => {
       client_id: process.env.apiKey,
       client_secret: process.env.apiSecret
     },
-    uri: `${pageURI}/${req.body.id}.json`,
+    uri: `${pageURI}/${req.query["id"]}.json`,
     json: true
   })
     .then(() => {
-      res.json({ message: `Delete ${req.body.id} sucessfully` });
+      res.json({ message: `Delete ${req.query["id"]} sucessfully` });
     })
     .catch(error => {
       res.send(error);

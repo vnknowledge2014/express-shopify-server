@@ -9,11 +9,11 @@ const routes = require("./routes");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.use(bodyParser.json({ extended: true }));
-app.use("/", routes);
 app.use(cors());
+app.use("/", routes);
 
 const server = new ApolloServer({
   typeDefs,
@@ -29,5 +29,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Shopify Server is starting...!");
+  console.log(`Shopify Server is starting..., port: ${PORT}`);
 });
